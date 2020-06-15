@@ -1,0 +1,6 @@
+django
+django-tables2
+RPi.GPIO
+
+
+

@@ -1,0 +1,26 @@
+{% extends 'runcode/base.html' %}
+
+{% block code %}
+<textarea id="text-code" rows="10" cols="70" name="code">
+{{ code }}
+</textarea>
+<div id="text-code-ace" class="hidden" style="height: 30%;">{{ code }}</div>
+{% endblock %}
+
+{% block run %}
+<textarea id="text-result" rows="10" cols="70" style="height: 30%;" readonly>{{ resrun }}</textarea>
+{% endblock %}
+
+{% block comp %}
+<textarea id="text-compile" rows="20" cols="70" style="height: 50%;" readonly>{{ rescomp }}</textarea>
+{% endblock %}
+
+{% block video %}
+<!--<div class="video-container">
+<iframe width="640" height="480" src="{{ vid_url }}" frameborder="0" allowfullscreen></iframe>
+</div>-->
+<div class="img-container">
+<img class="responsive-img" src="{{ vid_url }}" id="iframe1" style="max-width: 420px;border:5px solid black">
+</div>
+<!--<img class="responsive-img" src="{{ vid_url }}" style="height: 10%;width: 100%;" id="iframe1">-->
+{% endblock %}

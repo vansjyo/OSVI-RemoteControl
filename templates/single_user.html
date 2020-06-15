@@ -1,0 +1,13 @@
+<!-- templates -->
+{% extends 'base.html' %}
+
+{% block title %}Single_User{% endblock %}
+
+{% block content %}
+  <div class="card" style="padding:20px;">
+  <h4 class="center">Other users are logged in, please retry in five minutes</h4>
+  <div class="row">
+      <a class="btn-large blue-grey darken-4" href="{% url 'login' %}">login</a>
+  </div>
+</div>
+{% endblock %}

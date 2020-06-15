@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+	<div class="col s12 m6 col-md-4 text-center my-4" style="cursor: pointer;" onclick="window.open('http://www.nitk.ac.in','mywindow');">
+		<img src="{% static 'images/nitklogo.png' %}" alt="NITK Logo" height="180">
+		<div><h6>National Institute of Technology Karnataka (NITK), Surathkal</h6></div> 
+	</div>
+	<div class="col s12 m6 col-md-4 text-center my-4" style="cursor: pointer;" onclick="window.open('http://csd.nitk.ac.in','mywindow');">
+		<img src="{% static 'images/logoCSD.jpeg' %}" alt="CSD Logo" height="180">
+		<div><h6>Centre for System Design (CSD), NITK Surathkal</h6></div>
+	</div>
+</div>
+
+<h3 class="" style="margin-top: 24px;">Faculty</h3>
+<div style="
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+align-items: center;
+justify-content: center;">
+<div class="row center-align">
+		<div class="col s12 m6">
+			<div class="card center">
+				<div class="card-image center-align">
+					<img src="{% static 'images/faculty.jpg' %}" height="200" style="min-width: 170px;width: 200px;border-radius: 50%;padding: 20px;margin: 0 auto;">
+				</div>
+
+			<div class="card-content" style="padding:10px;margin-bottom: 0px;">
+				<p>
+					<h5 style="padding-top:0px;">Dr Pruthviraj Umesh</h5>
+					Course Instructor - AM477 - Open Source Virtual Instrumentation<br>
+                    Assistant Professor<br>
+					Department of Applied Mechanics and Hydraulics<br>
+
+				</p><br>
+				<p>
+					<a href="http://appmech.nitk.ac.in/faculty/pruthviraj-u" class="fa fa-globe text-darken-3" style="font-size:23px;padding: 5px;"></a>
+					<a href="https://www.linkedin.com/in/dr-pruthviraj-u" class="fa fa-linkedin blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a>
+                    <a href="https://www.facebook.com/pruthviraj.umesh" class="fa fa-facebook blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a>
+                    <a href="https://www.instagram.com/dr.pruthviraj.u/?hl=en" class="fa fa-instagram blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a>
+				</p>
+			</div>
+
+	</div>
+    </div>
+		<div class="col s12 m6">
+			<div class="card center">
+				<div class="card-image center-align">
+					<img src="{% static 'images/kvg.jpg' %}" height="200" style="min-width: 170px;width: 200px;border-radius: 50%;padding: 20px;margin: 0 auto;">
+				</div>
+
+					<div class="card-content" style="padding:10px;margin-bottom: 0px;">
+						<p>
+							<h5 style="padding-top:0px;">Dr K V Gangadharan</h5>
+							Professor<br>Department of Mechanical Engineering<br>
+                        Coordinator, Centre for System Design (CSD)
+						</p><br>
+						<p>
+							<a href="http://mech.nitk.ac.in/faculty/k-v-gangadharan" class="fa fa-globe text-darken-3" style="font-size:23px;padding: 5px;"></a>
+							<a href="https://scholar.google.co.in/citations?user=hk702CEAAAAJ&hl=en" class="fa fa-graduation-cap red-text text-darken-4" style="font-size:23px;padding: 5px;"></a>
+							<a href="https://www.linkedin.com/in/kvganga" class="fa fa-linkedin blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a>
+                        </p>
+					</div>
+				</div>
+			</div>
+</div>
+</div>
+
+
+<style type="text/css">
+    .card{
+        height: 450px;
+    }
+</style>
+
+<h3 class="" style="margin-top: 24px;">Team Members</h3>
+    <h6>( Under the course AM477, Dec 2018 - Apr 2019 )</h6><br>
+    <div class="">
+	<div class="row">
+
+<!--		<div class="col s12 m3">
+			<div class="card center">
+				<div class="card-image center-align">
+					<img src="{% static 'images/vanshika.jpeg' %}" height="200" style="min-width: 170px;width: 200px;border-radius: 50%;padding: 20px;margin: 0 auto;">
+				</div>
+
+					<div class="card-content" style="padding:10px;margin-bottom: 0px;">
+						<p>
+							<h5 style="padding-top:0px;">Vanshika Gupta</h5>
+							<br>B.Tech , Batch of 2020<br>Department of Civil Engineering
+						</p><br><br>
+						<p>
+							<a href="https://github.com/vansjyo" class="fa fa-github grey-text text-darken-4" style="font-size:23px;padding: 5px;"></a> 
+							<a href="#" class="fa fa-google red-text text-darken-4" style="font-size:23px;padding: 5px;"></a> 
+							<a href="https://www.linkedin.com/in/vanshika-gupta-553085170" class="fa fa-linkedin blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a>
+						</p> 
+					</div>
+
+			</div>
+		</div> -->>
+
+		<div class="col s12 m3">
+			<div class="card center">
+				<div class="card-image center-align">
+					<img src="{% static 'images/shivam.jpeg' %}" height="200" style="min-width: 170px;width: 200px;border-radius: 50%;padding: 20px;margin: 0 auto;">
+				</div>
+
+					<div class="card-content" style="padding:10px;margin-bottom: 0px;">
+						<p>
+							<h5 style="padding-top:0px;">Shivam Mahesh Potdar</h5>
+							B.Tech , Batch of 2021<br>Department of Electrical and Electronics Engineering
+						</p><br>
+						<p>
+							<a href="https://github.com/shivampotdar" class="fa fa-github grey-text text-darken-4" style="font-size:23px;padding: 5px;"></a> 
+							<a href="mailto:shivampotdar99@gmail.com" class="fa fa-at red-text text-darken-4" style="font-size:23px;padding: 5px;"></a>
+							<a href="https://www.linkedin.com/in/shivam-nitk" class="fa fa-linkedin blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a>
+                            <a href="https://www.facebook.com/shivampotdar99" class="fa fa-facebook blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a>
+						</p> 
+					</div>
+
+			</div>
+		</div>
+
+<!--		<div class="col s12 m3">
+			<div class="card center">
+				<div class="card-image center-align">
+					<img src="{% static 'images/ashwin.jpeg' %}" height="200" style="min-width: 170px;width: 200px;border-radius: 50%;padding: 20px;margin: 0 auto;">
+				</div>
+
+
+					<div class="card-content" style="padding:10px;margin-bottom: 0px;">
+						<p>
+							<h5 style="padding-top:0px;">Ashwinkumar Kupsad</h5>
+							B.Tech , Batch of 2019<br>Department of Electrical and Electronics Engineering
+						</p><br>
+						<p>
+							<a href="https://github.com/vansjyo" class="fa fa-github grey-text text-darken-4" style="font-size:23px;padding: 5px;"></a> 
+							<a href="#" class="fa fa-google red-text text-darken-4" style="font-size:23px;padding: 5px;"></a> 
+							<a href="https://www.linkedin.com/in/ashwinkumar-kupsad-284909108" class="fa fa-linkedin blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a>
+						</p> 
+					</div>
+				</div>
+
+		</div>
+
+		<div class="col s12 m3">
+			<div class="card center">
+				<div class="card-image center-align">
+					<img src="{% static 'images/rahul.jpeg' %}" height="200" style="min-width: 170px;width: 200px;border-radius: 50%;padding: 20px;margin: 0 auto;">
+				</div>
+
+					<div class="card-content" style="padding:10px;margin-bottom: 0px;">
+						<p>
+							<h5 style="padding-top:0px;">Rahul Das</h5>
+							<br>B.Tech , Batch of 2019<br>Department of Civil Engineering
+						</p><br><br>
+						<p>
+							<a href="#" class="fa fa-github grey-text text-darken-4" style="font-size:23px;padding: 5px;"></a>
+							<a href="#" class="fa fa-at red-text text-darken-4" style="font-size:23px;padding: 5px;"></a>
+							<a href="#" class="fa fa-linkedin blue-text text-darken-3" style="font-size:23px;padding: 5px;"></a> 
+						</p> 
+					</div>
+
+			</div>
+		</div>
+
+	</div> -->
+    	</div>
+
+{% endblock %}

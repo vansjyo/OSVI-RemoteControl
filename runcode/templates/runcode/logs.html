@@ -1,0 +1,186 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>{% block title %}OSVI-RT LED{% endblock %}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/runcode.css' %}">
+</head>
+
+<body class="home">
+
+	<nav class="nav-extended" style="background-color:#263238  !important;">
+		<div class="nav-wrapper">
+			<a href="/" id="head_osvi" class="brand-logo blue-grey-text text-lighten-5">
+                          <img class="left" src="{% static 'images/logoCSD.jpeg' %}" style="height: 65px;">
+                          <span style="font-size: 22px;"> Open Source Virtual Instrumentation-Remote Code Testing</span>
+                        </a>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				{% if user.is_authenticated %}
+				<li><a href="{% url 'code_home' %}">Code Testing</a></li>
+				<li><a href="{% url 'logs' %}">User Logs</a></li>
+				<li><a href="{% url 'logout' %}">Logout</a></li>
+				{% else %}
+		                <li><a href="{% url 'login' %}">Log In</a></li>
+		                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+	<ul class="sidenav" id="mobile-demo">
+		<li><a class="btn blue-grey darken-4" href="{% url 'home' %}">Home</a></li>
+		{% if user.is_authenticated %}
+		<li><a class="btn blue-grey darken-4" href="{% url 'code_home' %}">Code Testing</a></li>
+		<li><a class="btn blue-grey darken-4" href="{% url 'logs' %}">User Logs</a></li>
+		<li><a class="btn blue-grey darken-4" href="{% url 'logout' %}">Log Out</a></li>
+		{% else %}
+		<li><a class="btn blue-grey darken-4" href="{% url 'login' %}">Log In</a></li>
+		<li><a class="btn blue-grey darken-4" href="{% url 'signup' %}">Sign Up</a></li>
+  		{% endif %}
+        </ul>
+
+
+	<main>
+
+		<div class="row" style="margin-top:30px;">
+			<!-- ************  CODING ZONE  ************ -->
+			<div class="col s12 center">
+				<table class="responsive-table">
+					<tr>
+						<!--<th>Session ID</th>-->
+						<th>Logs</th>
+						<th>Videos</th>
+					</tr>
+					{% for u_id in unique_sessions %}
+					<tr>
+						<!--<td>{{u_id}}</td>-->
+						<td style="vertical-align: top;">
+							<table class="responsive-table">
+								<tr>
+									<th>Author</th>
+									<th>Time Saved</th>
+									<th>Pycode</th>
+								</tr>
+								{% for logs in user_data %}
+								{% if logs.session == u_id %}
+								<tr>
+									<td>{{logs.author}}</td>
+									<td>{{logs.postdate}}</td>
+								
+									<td><a href="/media/{{logs.pycode}}">{{logs.pycode}}</a></td>
+								</tr>
+								{% endif %}
+								{% endfor %}
+							</table>
+						</td>
+						<td style="vertical-align: top;">
+							<table class="responsive-table">
+								<tr>
+									<th>Author</th>
+									<th>Post Date</th>
+									<th>Video</th>
+							    </tr>
+								{% for log in user_videos %}
+								{% if log.session == u_id %}
+								<tr>
+									<td>{{log.author}}</td>
+									<td>{{log.postdate}}</td>
+									<td><a href="/media/{{log.uservid}}">{{log.uservid}}</a></td>
+								</tr>
+								{% endif %}
+								{% endfor %}
+							</table>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+
+	</main>
+	
+	<footer class="page-footer" style="background-color:#263238  !important;padding: 0px;">
+		<div class="footer-copyright">
+			<div class="container">
+				@Supported by CSD NITK
+				<a class="white-text right" href="{% url 'team' %}" style="font-weight: 700;">Team</a>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.sidenav').sidenav();
+		});
+	</script>
+	<script type="text/javascript">
+	$(window).resize(function () {
+      if (window.innerWidth < 800) {
+        originalContent = $('#head_osvi').innerHTML;
+        $('#head_osvi').replaceWith('<a href="/" id="head_osvi" class="blue-grey-text text-lighten-5" style="font-size: 22px;"> OSVI-RCT <img class="right" src="{% static 'images/logoCSD.jpeg' %}" style="height:65px;"> </a>');
+
+      } else if (window.innerWidth > 800) {
+        $('#head_osvi').replaceWith('<a href="/" id="head_osvi" class="brand-logo blue-grey-text text-lighten-5"><img class="left" src="{% static 'images/logoCSD.jpeg' %}" style="height:65px;"><span style="font-size: 22px;"> Open Source Virtual Instrumentation-Remote Code Testing</span></a>');
+      }
+    }).resize();
+	</script>
+	<script>
+		$(document).ready(function(){
+			$('.sidenav').sidenav();
+		});
+	</script>
+	</html>
+<!--
+<!doctype html>
+<html>
+<head>
+	<title>Logs of Pycode</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Author</th>
+			<th>Time Saved</th>
+			<th>Pycode</th>
+			<th>Result Outpur</th>
+			<th>Session</th>
+			<th>Videos</th>
+		</tr>
+	{% for logs in user_data %}
+	<tr>
+		<td>{{logs.id}}</td>
+		<td>{{logs.postdate}}</td>
+		<td>{{logs.pycode}}</td>
+		<td>{{logs.postdate}}</td>
+		<td>{{logs.result_output}}</td>
+		<td>{{logs.session}}</td>
+	  {% for vid in user_videos %}
+		{% if vid.session == logs.session %}
+		<td>{{vid.uservid}}</td>
+		{% endif %}
+	  {% endfor %}
+	</tr>
+	{% endfor %}
+</table>
+
+	<h1>User Logs</h1>
+	{% render_table table %}
+	<h2>Video Logs</h2>
+	{% render_table table2%}
+</body>
+</html> -->

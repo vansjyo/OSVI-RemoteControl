@@ -1,0 +1,191 @@
+{% load static %}
+<html>
+
+<head>
+	<title>OSVI RT-LED</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">   
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+	<link rel="stylesheet" href="{% static 'css/runcode.css' %}">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+	<nav class="nav-extended" style="background-color:#263238  !important;">
+		<div class="nav-wrapper">
+			<a href="/" id="head_osvi" class="brand-logo blue-grey-text text-lighten-5">
+                <img class="left" src="{% static 'images/logoCSD.jpeg' %}" style="height:65px;">
+                <span style="font-size: 22px;"> Open Source Virtual Instrumentation-Remote Code Testing</span>
+            </a>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				{% if user.is_authenticated %}
+				<li><a href="{% url 'code_home' %}">Code Testing</a></li>
+				<li><a href="{% url 'logs' %}">User Logs</a></li>
+				<li><a href="{% url 'logout' %}">Logout</a></li>
+				{% else %}
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+		            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+				{% endif %}
+			</ul>
+		</div>
+    </nav>
+	<ul class="sidenav" id="mobile-demo">
+		<li><a class="btn blue-grey darken-4" href="{% url 'home' %}">Home</a></li>
+		{% if user.is_authenticated %}
+		<li><a class="btn blue-grey darken-4" href="{% url 'code_home' %}">Code Testing</a></li>
+		<li><a class="btn blue-grey darken-4" href="{% url 'logs' %}">User Logs</a></li>
+		<li><a class="btn blue-grey darken-4" href="{% url 'logout' %}">Log Out</a></li>
+		{% else %}
+		<li><a class="btn blue-grey darken-4" href="{% url 'login' %}">Log In</a></li>
+		<li><a class="btn blue-grey darken-4" href="{% url 'signup' %}">Sign Up</a></li>
+		{% endif %}
+         </ul>
+	<main style="padding:15px;">
+
+		<div class="row">
+			<!-- ************  CODING ZONE  ************ -->
+			<div class="col s12 m6">
+				<div id="code">
+					<form method="post" id="runcode">{% csrf_token %}
+						<div id="title-code" class="head-section">
+							<h4>Source Code</h4>
+						</div>
+						{% block code %}
+						{% endblock %}
+						<input id="launch-button" class="head-section btn" type="submit" value="Launch" />
+					</form>
+				</div>
+			</div>
+
+			<!-- ************ RUNNING ZONE RESULTS ************ -->
+			<div class="col s12 m6">
+				<div id="result">
+					<div id="title-result" class="head-section">
+						<h4>Output result</h4>
+					</div>
+					{% block run %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+
+		<!-- ************ COMPILATION RESULTS ZONE ************ -->
+		<div class="row">
+			<div class="col s12 m6">
+				<div id="compile">
+					<div id="title-compile" class="head-section">
+						<h4>Compilation</h4>
+					</div>
+					{% block comp %}
+					{% endblock %}
+				</div>
+			</div>
+
+			<!-- ************* WEBCAM IFRAME ************************** -->
+			<div class="col s12 m6">
+				<div id="title-feed" class="row" style="display: block;">
+					<div class="col s12 m8" style="font-size:35px;">Live Feed</div>
+					<div class="col s12 m2">
+						<form action="{% url 'start_vid'%}" method="POST" id="start_vid">{% csrf_token %}
+							<input type="submit" value="Start" class="head-section btn" id="toggle1" />
+						</form>
+					</div>
+					<div class="col s12 m2">
+						<form action="{% url 'stop_vid'%}" method="POST" id="stop_vid">{% csrf_token %}
+							<input type="submit" value="Stop" class="head-section btn" id="toggle2" />
+						</form>
+					</div>
+				</div>
+				<!-- Make height and width changes by as needed by adding in the style (height:Xpx;width:Ypx;) -->
+				<!--<iframe src="http://172.20.10.2:8081" style="height: 30%;width: 100%;"></iframe><br>-->
+				{% block video %}
+                {% endblock %}
+			</div>
+		</div>
+	</main>
+	
+	<footer class="page-footer" style="background-color:#263238  !important;padding: 0px;">
+		<div class="footer-copyright">
+			<div class="container">
+				@Supported by CSD NITK
+				<a class="white-text right" href="{% url 'team' %}" style="font-weight: 700;">Team</a>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="{% static 'ace/ace.js' %}"></script>
+	<script>
+		$(document).ready(function(){
+			$('.sidenav').sidenav();
+			/*console.log("hi")
+          var referrer= document.getElementById('runcode')
+            var abc = "{% url 'code_home' %}"
+          console.log(referrer)
+          console.log(abc)*/
+      });
+  </script>
+  <script>
+		// The Ace editor needs divs instead of textareas
+		// So we hide the textarea and show a div instead
+		var editorElement = document.getElementById("text-code");
+		editorElement.classList.add("hidden");
+		document.getElementById("text-code-ace").classList.remove("hidden");
+
+		// Set up the editor
+		var editor = ace.edit("text-code-ace");
+		editor.setTheme("ace/theme/tomorrow");
+		var language = ("{{ target }}" === "runpy") ? "python" : "c_cpp";
+		editor.getSession().setMode("ace/mode/" + language);
+		// Make sure we copy the content of the editor to the textarea before posting
+		// its content to the server
+		document.getElementById("launch-button").addEventListener("click", function () {
+			editorElement.innerHTML = editor.getValue();
+		});
+	</script>
+	<script type="text/javascript">
+        $(window).resize(function () {
+      if (window.innerWidth < 800) {
+        originalContent = $('#head_osvi').innerHTML;
+        $('#head_osvi').replaceWith('<a href="/" id="head_osvi" class="blue-grey-text text-lighten-5" style="font-size: 22px;">OSVI-RCT<img class="right" src="{% static 'images/logoCSD.jpeg' %}" style="height:65px;"> </a>');
+
+      } else if (window.innerWidth > 800) {
+        $('#head_osvi').replaceWith('<a href="/" id="head_osvi" class="brand-logo blue-grey-text text-lighten-5"><img class="left" src="{% static 'images/logoCSD.jpeg' %}" style="height:65px;"><span style="font-size: 22px;"> Open Source Virtual Instrumentation-Remote Code Testing</span></a>');
+      }
+    }).resize();
+	</script>
+	{% if target == "runpy" %}
+	<script type="text/javascript">
+		$("#runpy").addClass("blue-grey darken-3");
+	</script>
+	{% else %}
+	<script type="text/javascript">
+		$("#runpy").removeClass("blue-grey darken-3");
+	</script>
+	{% endif %}
+
+    <!--
+    <script>
+      $(window).on('unload', function() {
+	// You can send an ArrayBufferView, Blob, DOMString or FormData
+	// Since Content-Type of FormData is multipart/form-data, the Content-Type of the HTTP request will also be multipart/form-data
+	    var URL = "http://localhost:8000/runcode/stop_vid"
+    	navigator.sendBeacon(URL)
+      });
+    </script>
+    */
+-->
+<!--<script src="../../static/main.js"></script>-->
+
+</body>
+
+</html>
