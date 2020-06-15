@@ -1,6 +1,8 @@
 # osvi-rtled
 
-## Usage Instructions
+### Note: This is an open-source copy of a privately maintained repo
+
+## Usage Instructions:
 
 1. Install Django latest version, ```pip3 install django```
 2. ```pip3 install mmap```
@@ -12,8 +14,9 @@
 6. Add your password and pi IP in ```mysite/settings.py```
 
 
-#### Author
-##### Shivam Mahesh Potdar, NITK
+### Author:
+
+#### Shivam Mahesh Potdar, NITK
 shivampotdar99@gmail.com
 github.com/shivampotdar
 
