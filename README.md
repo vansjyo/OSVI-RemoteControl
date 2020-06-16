@@ -13,6 +13,8 @@
 5. Install ```motion``` using ```sudo apt install motion``` in Pi
 6. Add your password and pi IP in ```mysite/settings.py```
 
+Prototype:
+![Home](https://github.com/vansjyo/OSVI-RemoteControl/blob/master/osvi.png)
 
 ### Author:
 
