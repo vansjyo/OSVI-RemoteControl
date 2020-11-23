@@ -1,6 +1,7 @@
 # osvi-rtled
 
-### Note: This is an open-source copy of a privately maintained repo
+### Note: This is an open-source copy of a privately maintained repository
+#### It is also published under the title "Conceptualization and Design of Remotely-Accessible Hardware Interface (RAHI) Laboratory" at https://link.springer.com/chapter/10.1007%2F978-981-15-5788-0_12
 
 ## Usage Instructions:
 
