@@ -19,11 +19,10 @@ Prototype:
 
 ### Author:
 
-#### Shivam Mahesh Potdar, NITK
-shivampotdar99@gmail.com
-github.com/shivampotdar
+#### [Shivam Mahesh Potdar](https://github.com/shivampotdar), NITK
 
-#### Vanshika Gupta, NITK
-github.com/vansjyo
+
+#### [Vanshika Gupta](https://github.com/vansjyo), NITK
+
 
 
